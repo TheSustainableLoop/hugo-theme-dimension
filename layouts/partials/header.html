@@ -1,13 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html{{ with site.LanguageCode | default site.Language.Lang }} lang="{{ . }}"{{ end }}>
 <head>
     <title>{{ .Params.Title | default "Title" }}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="{{ "assets/css/main.css" | absURL }}"/>
     <link rel="canonical" href="{{ .Permalink }}">
-    <noscript><link rel="stylesheet" href="{{ "assets/css/noscript.css" | absURL }}"/></noscript>
     <style>
         :root{--site-background : url("{{ .Params.background | default "images/bg.jpg" | absURL }}")};
     </style> 
+    <noscript>
+        <link rel="stylesheet" href="{{ "assets/css/noscript.css" | absURL }}"/>
+        <meta http-equiv="refresh" content="0; url={{ .Permalink }}"/>
+    </noscript>
+    <script>
+      // modified from https://nanmu.me/en/posts/2020/hugo-i18n-automatic-language-redirection/
+      ;(function () {
+        var getFirstBrowserLanguage = function () {
+          var nav = window.navigator,
+          browserLanguagePropertyKeys = ['language', 'browserLanguage', 'systemLanguage', 'userLanguage'],
+          i,
+          language
+
+          if (Array.isArray(nav.languages)) {
+            for (i = 0; i < nav.languages.length; i++) {
+              language = nav.languages[i]
+              if (language && language.length) {
+                return language
+              }
+            }
+          }
+
+          // support for other well known properties in browsers
+          for (i = 0; i < browserLanguagePropertyKeys.length; i++) {
+            language = nav[browserLanguagePropertyKeys[i]]
+            if (language && language.length) {
+              return language
+            }
+          }
+          return 'en'
+        }
+
+        var preferLang = getFirstBrowserLanguage()
+        if ({{ range $.Site.Home.AllTranslations }}
+            window.location.pathname.startsWith('/'+{{ .Language.Lang }}+'/') ||
+            {{ end }} false) return;
+        {{ range $.Site.Home.AllTranslations }}
+        if (preferLang.indexOf({{ .Language.Lang }}) !== -1) {
+          // visitor prefers
+          window.location.replace({{ .Permalink }}+window.location.pathname)
+        } else {{ end }} {
+          // fallback to default lang
+          window.location.replace({{ .Permalink }}+window.location.pathname)
+        }
+      })()
+    </script>
 </head>
