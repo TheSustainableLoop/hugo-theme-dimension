@@ -8,7 +8,11 @@
             <!-- Header -->
                 <header id="header">
                     <div class="logo">
-                        <span class="icon fa-gem"></span>
+                        <a href="{{ "/" | relURL }}">
+                            <span class="icon {{ .Site.Params.iconclass }}">
+                                <img src="{{ .Site.Params.logo }}">
+                            </span>
+                        </a>
                     </div>
                     <div class="content">
                         <div class="inner">
