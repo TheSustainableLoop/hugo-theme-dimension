@@ -25,7 +25,7 @@
                     </div>
                     <nav>
                         <ul>
-                            {{ range .Pages.ByDate }}
+                            {{ range .RegularPages.ByWeight }}
                                 {{if .Title }}
                                     {{if .Content}}
                                         <li>
