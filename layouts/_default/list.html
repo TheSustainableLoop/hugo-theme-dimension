@@ -40,9 +40,9 @@
                     </nav>
                 </header>
 
-            <!-- Main -->
+            <!-- Main page content, hidden usually -->
                 <div id="main">
-                    {{ range .Pages }}
+                    {{ range .RegularPages.ByWeight }}
                         {{if .Title }}
                             {{if .Content }}
                                 <article id="{{ cond (in (.Title|urlize) "%") (.Title | base64Encode) (.Title) | urlize }}">
@@ -54,7 +54,7 @@
                         {{ end }}
                     {{ end }}
                 </div>
-                <div id="language">
+                <div id="language" style="margin-top:2em;">
                     {{ range $.Site.Home.AllTranslations }}
                     {{ if ne $.Site.Language.Lang .Language.Lang }}
                         <a href="{{ .Permalink }}" style="border:0;padding: 0 .2em;letter-spacing: 0.2rem;">
