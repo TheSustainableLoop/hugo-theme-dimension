@@ -1,0 +1,11 @@
+{{ $thisurl := .Permalink | relURL }}
+<div id="language" style="margin-top:2em;">
+    {{ range $.Site.Home.AllTranslations }}
+    {{ if ne $.Site.Language.Lang .Language.Lang }}
+        {{ $from := printf "/%s/" $.Site.Language.Lang }}
+        {{ $to   := printf "/%s/" .Language.Lang }}
+        <a href="{{ replace $thisurl $from $to | absURL }}" style="border:0;padding: 0 .2em;letter-spacing: 0.2rem;">
+            {{ .Language.LanguageName }}</a>
+    {{ end }}
+    {{ end }}
+</div>

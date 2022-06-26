@@ -15,13 +15,14 @@
                     </div>
                     <div class="content">
                         <div class="inner">
-                            <h1><a href="{{ "/" | relURL }}">{{ .Title }}</a></h1>
+                            <h1><a href="{{ "/" | relLangURL }}">{{ .Title }}</a></h1>
                             <p>
                             {{ .Content }}
                             </p>
                         </div>
                     </div>
                 </header>
+                {{ partial "language.html" .}}
                 {{ partial "footer.html" .}}
         </div>
     <!-- BG -->
