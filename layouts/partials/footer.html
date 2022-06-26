@@ -4,7 +4,7 @@
         {{ range $bottompages }}
             {{if .Title }}
                     <li style="display:inline; padding: 0 .5rem;">
-                        <a href="{{ .Permalink }}#{{ cond (in (.Title|urlize) "%") (.Title | base64Encode) (.Title) | urlize }}">{{ .Title }}</a>
+                        <a href="{{ .Section | absLangURL }}#{{ cond (in (.Title|urlize) "%") (.Title | base64Encode) (.Title) | urlize }}">{{ .Title }}</a>
                     </li>
             {{ end }}
         {{ end }}
