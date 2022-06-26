@@ -1,4 +1,14 @@
 <footer id="footer">
+    {{ $bottompages := where .Site.Pages.ByWeight "Type" "==" "bottomnav" }}
+    <ul class="copyright" style="list-style:none; margin: 1rem;">
+        {{ range $bottompages }}
+            {{if .Title }}
+                    <li style="display:inline; padding: 0 .5rem;">
+                        <a href="{{ .Permalink }}#{{ cond (in (.Title|urlize) "%") (.Title | base64Encode) (.Title) | urlize }}">{{ .Title }}</a>
+                    </li>
+            {{ end }}
+        {{ end }}
+    </ul>
     <p class="copyright">
     &copy; {{ .Site.Title }} {{ now.Year }}
     <br />
