@@ -14,11 +14,9 @@
                     </div>
                     <div class="content">
                         <div class="inner">
-                            <h1>{{ .Title | default "Title" }}</h1>
-                            {{ if .Params.description }}
-                            <p>
-                                {{ .Params.description }}
-                            </p>
+                            <h1><a href="{{ "/" | relLangURL }}">{{ .Site.Title | default "Title" }}</a></h1>
+                            {{ if .Description }}<p>{{ .Description }}</p>
+                            {{ else }}<p>{{ .Title }}</p>
                             {{ end }}
                         </div>
                     </div>
@@ -38,7 +36,6 @@
                         </ul>
                     </nav>
                 </header>
-
             <!-- Main page content, hidden usually -->
                 <div id="main">
                     {{ range $pages }}
