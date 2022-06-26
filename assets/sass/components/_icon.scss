@@ -30,4 +30,12 @@
 				font-family: 'Font Awesome 5 Brands';
 			}
 		}
+        > img {
+            display: inline-block;
+            vertical-align: middle;
+            max-width: 3.5rem;
+            max-height: 3.5rem;
+            width: auto;
+            height: auto;
+        }
 	}
