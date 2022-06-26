@@ -1,4 +1,5 @@
 {{ partial "header.html" . }}
+{{ $pages := where .RegularPages.ByWeight "Type" "!=" "specialpage" }}
 <body class="is-preload">
     <!-- Wrapper -->
         <div id="wrapper">
@@ -23,7 +24,7 @@
                     </div>
                     <nav>
                         <ul>
-                            {{ range .RegularPages.ByWeight }}
+                            {{ range $pages }}
                                 {{if .Title }}
                                     {{if .Content}}
                                         <li>
@@ -40,7 +41,7 @@
 
             <!-- Main page content, hidden usually -->
                 <div id="main">
-                    {{ range .RegularPages.ByWeight }}
+                    {{ range $pages }}
                         {{if .Title }}
                             {{if .Content }}
                                 <article id="{{ cond (in (.Title|urlize) "%") (.Title | base64Encode) (.Title) | urlize }}">
