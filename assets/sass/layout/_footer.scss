@@ -17,12 +17,22 @@
 		margin-top: 2rem;
 		text-align: center;
 
+        a { border-bottom: unset; }
+        .supporters {
+            padding: 0 0.5rem;
+            img { height: 3rem; }
+        }
+        .social {
+            font-size: 1.5rem;
+            padding: 0 0.5rem;
+        }
 		.copyright {
 			letter-spacing: _font(letter-spacing);
 			font-size: 0.6rem;
 			opacity: 0.75;
 			margin-bottom: 0;
 			text-transform: uppercase;
+            li { display:inline; padding: 0 .5rem; }
 		}
 
 		body.is-article-visible & {

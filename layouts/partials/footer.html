@@ -1,16 +1,38 @@
 <footer id="footer">
+    <p class="copyright" style="font-size: 0.8rem;">
+        {{ .Site.Params.SupporterTitle }}
+        {{ range .Site.Params.SupporterLogos -}}
+            <span class="supporters">
+                {{ if .url }}
+                <a target="_blank" rel="noopener" href="{{ .url }}">
+                {{ end }}
+                    <img src="{{ .iconurl }}" style="vertical-align:middle;"></i>
+                {{ if .url }}</a>{{ end }}
+            </span>
+        {{- end }}
+    </p>
     {{ $bottompages := where .Site.Pages.ByWeight "Type" "==" "bottomnav" }}
     <ul class="copyright" style="list-style:none; margin: 1rem;">
         {{ range $bottompages }}
             {{if .Title }}
-                    <li style="display:inline; padding: 0 .5rem;">
-                        <a href="{{ .Section | absLangURL }}#{{ cond (in (.Title|urlize) "%") (.Title | base64Encode) (.Title) | urlize }}">{{ .Title }}</a>
-                    </li>
+                <li>
+                    <a href="{{ .Section | absLangURL }}#{{ cond (in (.Title|urlize) "%") (.Title | base64Encode) (.Title) | urlize }}">{{ .Title }}</a>
+                </li>
             {{ end }}
         {{ end }}
+        {{ range .Site.Params.Social -}}
+        <li class="social">
+            {{ if .url }}
+            <a target="_blank" rel="noopener" href="{{ .url }}">
+            {{ end }}
+                <i class="fab fa-{{ .type }}"><img src="{{ .iconurl }}"></i>
+                {{ if .url }}</a>{{ end }}
+        </li>
+        {{- end }}
     </ul>
     <p class="copyright">
     &copy; {{ .Site.Title }} {{ now.Year }}
     <br />
-    Design by <a href="https://github.com/d-asnaghi">d-asnaghi</a> and <a href="https://html5up.net">HTML5 UP</a>.</p>
+    Design by <a href="https://github.com/d-asnaghi">d-asnaghi</a> and <a href="https://html5up.net">HTML5 UP</a>.
+    </p>
 </footer>
