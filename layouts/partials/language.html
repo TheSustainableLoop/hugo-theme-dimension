@@ -1,5 +1,5 @@
 {{ $thisurl := .Permalink | relURL }}
-<div id="language" style="margin-top:2em;">
+<div id="language" style="margin-top:2em;font-size:0.7rem">
     {{ range $.Site.Home.AllTranslations }}
     {{ if ne $.Site.Language.Lang .Language.Lang }}
         {{ $from := printf "/%s/" $.Site.Language.Lang }}
