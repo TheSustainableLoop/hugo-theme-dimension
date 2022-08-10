@@ -12,6 +12,7 @@ A hugo port of HTML5UP's responsive and minimal dimension theme.
   - [Post archetype](#post-archetype)
     - [`background` and `logo` Params](#background-and-logo-params)
   - [How to run your site](#how-to-run-your-site)
+  - [Static Google fonts](#static-google-fonts)
   - [How to contribute](#how-to-contribute)
   - [Sponsoring](#sponsoring)
   - [License](#license)
@@ -117,6 +118,16 @@ $ hugo server -t dimension
 ```
 
 and go to `localhost:1313` in your browser. From now on all the changes you make will go live, so you don't need to refresh your browser every single time.
+
+## Static Google fonts
+
+Used the script provided on https://github.com/neverpanic/google-font-download for downloading the font, same url from online version:
+
+```
+cd static/webfonts
+google-font-download --url='https://fonts.googleapis.com/css?family=Comfortaa:300italic,600italic,300,600' -o ../css/font.css
+sed -i -e "s#url('#url('../webfonts/#" ../css/font.css
+```
 
 ## How to contribute
 
